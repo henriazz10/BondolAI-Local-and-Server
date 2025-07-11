@@ -4,7 +4,7 @@
 [![made with love by Henri](https://img.shields.io/badge/made%20with%20love%20by-Henri-ff69b4.svg)](https://github.com/Henriazz10)
 
 Welcome, how are you? In this repository contains a full app that support "State-Of-Art" models
-of Google and Mistral
+of Google, Mistral and Open Access (With Ollama)
 
 
 **Important: This version supports local and server models. 
