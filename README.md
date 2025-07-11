@@ -21,6 +21,7 @@ To use this code, the only things that you need to do are;
   ```
 - Then, you need to install all libraries of requeriments.txt
   ```bash
+  python -m venv .venv
   .\.venv\Scripts\activate
   ```
   ```bash
