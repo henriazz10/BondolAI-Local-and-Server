@@ -1,0 +1,5 @@
+streamlit
+google-generativeai
+mistralai
+ollama
+streamlit-cookies-controller
