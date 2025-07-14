@@ -3,16 +3,26 @@
 [![Python Version](https://img.shields.io/badge/Python-3.9+-brightgreen.svg)](https://www.python.org/)
 [![made with love by Henri](https://img.shields.io/badge/made%20with%20love%20by-Henri-ff69b4.svg)](https://github.com/Henriazz10)
 
-Welcome, how are you? In this repository contains a full app that support "State-Of-Art" models
-of Google, Mistral and Open Access (With Ollama)
+Welcome, how are you? This repository contains a full app developed by a 14 year old developer from Argentina that support "State-Of-Art" models
+of Google, Mistral and Open Access (Thanks to Ollama)
 
 
 **Important: This version supports local and server models. 
 If you only need server-side models (which requires lower local resources), please check out the server-only edition at: 
 Henriazz10/BondolAI-Server**
 
-## **¿How to use this code?**
+# **🚀 Main Features:**
 
+- 🔐 SHA256 password: Once a user register, we store his password in SHA256 for protect his security.
+- ✉️ Two-Factor Authentication: We check the veracity of the user, sending a code to his Email.
+- 🧠 Multiple models: Bondol native support Gemini, Mistral and Ollama models for answer your questions.
+- 💾 Conversations history:  We keep user's conversaions into a SQLite database
+- 🍪 Cookies: We use Cookies to keep user's sesion open, until he close it
+- ⚙️ Build with Streamlit: All frontend of the app, is build with Streamlit, thanks for that!
+
+# **🧑‍💻 ¿How to use this code?**
+
+*(Disclaimer: I am working to automatize those step)*
 To use this code, the only things that you need to do are;
 - First, you clone  all the code in a folder on your PC
   ```bash
@@ -49,25 +59,25 @@ To use this code, the only things that you need to do are;
   my app is going to work (I hope)
 
 
-# How to support me!
+# **✨How to support me!**
 
 This project is a labor of love, developed by a passionate young programmer. If you enjoy using BondolAI and would like to support its development, here are a few ways you can help.
 
-## By crypto
+## 🤖 By crypto
 - Bitcoin: `bc1qeysdwwm3vjesyvhnd9fqay23txgqj9kn5vw6dt`
 - USDT (Tether ERC20): `0xFA6159360D01B57D18730577035d6B09777c7EF4`
 - Ethereum: `0xFA6159360D01B57D18730577035d6B09777c7EF4`
 
 **No pressure at all!!!! I did Bondol for Hobby**; however, your support is welcome
 
-## Reporting:
+## **📣 Reporting:**
 
 -   **Found a bug?** Please [open an issue](https://github.com/Henriazz10/BondolAI-Local-and-Server/issues) and describe what went wrong.
 -   **Have an idea?** Feel free to open an issue to suggest a new feature.
 -   **Want to contribute code?** [Pull Requests](https://github.com/Henriazz10/BondolAI-Local-and-Server/pulls) are always welcome!
 
 
-# About ME:
+# **❓ About ME:**
 
 Thanks for your support!. I am a child who lives in Argentina; I only have 14 years, and I dream with
 work in Google DeepMind someday... And every report of your part, helps me with that objetive!
