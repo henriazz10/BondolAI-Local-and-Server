@@ -38,7 +38,7 @@ st.set_page_config(
 # LCSVE = Local y Server Edition
 # LCE = Local Edition
 # SVE = Server Edition
-app_version = "v0.1.2 LCSVE" # This is the app version, it will be shown in the sidebar
+app_version = "v0.1.3 LCSVE" # This is the app version, it will be shown in the sidebar
 
 # Only the firts time the app is run, dialog_etape is set to ''
 if 'dialog_etape' not in st.session_state:
@@ -120,23 +120,30 @@ def config_page():
             st.success("Tabla de usuarios borrada exitosamente.")
 
 
-        # We use a system that, with each st.rerun(), we can close and open new dialogs, of distints types.
+        # We use a system that, with each st.rerun(), we can close and open new dialogs, of distinct types.
         # If the dialog_etape is 'login', we show the login dialog
         if st.session_state.dialog_etape == 'login':
             login_dialog()
 
         # If the dialog_etape is 'register', we show the register dialog
         elif st.session_state.dialog_etape == 'register':
+            st.session_state.registering = True # We set the registering state to True, to avoid errors
             register_dialog()
 
         # If the dialog_etape is 'register_A2F', we show the A2F dialog, if it returns True, we set the session state to logged in,
         # create the account, and finally (ONLY IF THE ACCOUNT WAS CREATE) config_page() returns True
         elif st.session_state.dialog_etape == 'register_A2F':
-            if A2F_dialog(st.session_state.remail):
-                st.success("Cuenta creada exitosamente.")
-                create_account()
+            A2F_dialog(st.session_state.remail)
 
-        st.session_state.configurated = True # Set the configurated state to True, so the app can configure the pages correctely
+        elif st.session_state.dialog_etape == 'A2F_sent' and st.session_state.registering:
+            if 'a2f_successful' in st.session_state: # If the A2F code was sent successfully, we set the session state to 'register_A2F'
+                if st.session_state.a2f_successful:
+                    st.success("Cuenta creada exitosamente.")
+                    if create_account(): # If the account was created successfully...
+                        st.rerun() # We rerun the app to close the dialog
+
+
+        st.session_state.configurated = True # Set the configuration state to True, so the app can configure the pages correctly
         return False # If anything can be done, we return False, indicating thats the user isnt logged in
 
 # Print the app version in the sidebar
@@ -145,15 +152,19 @@ st.sidebar.markdown(f"**Versión:** {app_version}")
 
 # Always, we check if the user click the button "cambiar contraseña" (change password) in Accounts.py.
 if st.session_state.dialog_etape == 'change_password':
-    if change_password_dialog() is True:
-        st.session_state.dialog_etape = 'change_password_A2F'
-        st.rerun()
+    st.session_state.registering = False # We set the registering state to False, to avoid errors
+    change_password_dialog()
+
 
 # When the users complete the change password dialog, we send an A2F code to his mail
 elif st.session_state.dialog_etape == 'change_password_A2F':
-    if A2F_dialog(st.session_state.cp_email):
-        st.session_state.dialog_etape = 'change_password_approved'
-        st.rerun()
+    A2F_dialog(st.session_state.cp_email)
+
+elif st.session_state.dialog_etape == 'A2F_sent' and st.session_state.registering is False: # If the A2F code was sent, we check if the code was sent successfully
+    if 'a2f_successful' in st.session_state: # If the A2F code was sent successfully, we set the session state to 'change_password_approved'
+        if st.session_state.a2f_successful:
+            st.session_state.dialog_etape = 'change_password_approved'
+            st.rerun() # We rerun the app to show the change password dialog
 
 # When the user completes the A2F code, we show a dialog to change the password
 elif st.session_state.dialog_etape == 'change_password_approved':

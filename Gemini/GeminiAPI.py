@@ -89,6 +89,10 @@ def gemini_answer(question, server_model, historial):
 
                     )
                 )
+    else: # If the model is not compatible with Google's search or thinking
+        config = GenerateContentConfig(
+                response_modalities=["TEXT"], # Define the response modality, in this case, text
+                )
 
     try:
         for chunk in model.models.generate_content_stream(
